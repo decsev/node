@@ -141,8 +141,8 @@ module.exports = {
             title: title,
             description: description,
             publishTime: publishTime,
-            url: href,
-            uniqueCode: md5(href),
+            url: 'https://segmentfault.com' + href,
+            uniqueCode: md5('https://segmentfault.com' + href),
             dataSource: 'segmentfault',
             type: 3,
             cat: 1
@@ -180,8 +180,8 @@ module.exports = {
             title: title,
             description: description,
             publishTime: publishTime,
-            url: href,
-            uniqueCode: md5(href),
+            url: 'http://fex.baidu.com' + href,
+            uniqueCode: md5('http://fex.baidu.com' + href),
             dataSource: 'FEX',
             type: 4,
             cat: 1
