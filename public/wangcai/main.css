@@ -1,0 +1,93 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+a{
+    text-decoration: none;
+    color: #606266;
+  }
+
+ a:hover{
+    color: #409EFF;
+  }
+
+.el-header {
+    background-color: #393D49;
+    color: #fff;
+    text-align: left;
+    line-height: 60px;
+  }
+
+.el-main {
+  background-color: #fff;
+  color: #333;
+}
+
+body > .el-container {
+  margin-bottom: 40px;
+}
+
+
+.text {
+    font-size: 14px;
+  }
+
+  .item {
+    margin-bottom: 18px;
+  }
+
+  .clearfix:before,
+  .clearfix:after {
+    display: table;
+    content: "";
+  }
+  .clearfix:after {
+    clear: both
+  }
+
+  .box-card {
+    width: 100%;
+  }
+  .cat-wp {
+    padding-bottom: 20px;
+  }
+  .cat-wp .cat-title{
+    font-size: 12px;
+    padding-right: 10px;
+  }
+
+  .article-list{
+    padding-top: 15px;
+  }
+  .el-row {
+    margin-bottom: 15px;
+  }
+
+  .el-row:last-child {
+    margin-bottom: 0;
+  }
+
+  .article-list ul {
+    list-style: none;
+    font-size: 14px;
+  }
+
+  .article-list ul li {
+    line-height: 24px;
+    width: 500px;
+    float: left;
+    padding:0 20px;
+  }
+
+  .article-list ul li a{
+    float: right;
+  }
+  .article-list ul li .el-checkbox{
+    float: left;
+  }
+
+  .ctr-container{
+    padding-top: 20px
+  }

@@ -1,0 +1,101 @@
+{% extends "common/layout-wangcai.html" %}
+{% block body %}
+{% raw %}
+<div id="app">
+  <el-container>
+    <el-header>数字财经</el-header>
+    <el-main>
+      <el-card class="box-card">
+        <div slot="header" class="clearfix">
+          <span>每日推文</span>
+          <el-button style="float: right; padding: 3px 0; margin-left: 10px;" type="text" @click="getArticleList">reload</el-button>
+          <el-button style="float: right; padding: 3px 0" type="text" @click="toSource">source</el-button>
+        </div>
+        <div class="cat">
+          <div class="cat-wp">
+            <span class="cat-title">前端</span>
+            <el-radio-group v-model="type" size="mini">
+              <el-radio label="1" border>掘金前端</el-radio>
+              <el-radio label="2" border>伯乐在线</el-radio>
+              <el-radio label="3" border>segmentfault</el-radio>
+              <el-radio label="4" border>FEX</el-radio>
+            </el-radio-group>
+          </div>
+          <!-- <div class="cat-wp">
+            <span class="cat-title">后端</span>
+            <el-radio-group v-model="type" size="mini">
+              <el-radio label="3" border>掘金前端</el-radio>
+              <el-radio label="4" border>掘金前端</el-radio>
+            </el-radio-group>
+          </div> -->
+        </div>
+        <div class="article-list">
+          <el-row :gutter="20">
+            <el-col :span="12">
+              <div class="grid-content bg-purple">
+                <el-table ref="multipleTable" :data="articles" v-loading="loading" tooltip-effect="dark" height="400px"
+                  style="width: 100%" @selection-change="handleSelectionChange">
+                  <el-table-column type="selection" width="55">
+                  </el-table-column>
+                  <el-table-column prop="title" label="标题" show-overflow-tooltip>
+                    <template slot-scope="scope"><a :href="scope.row.url" target="_blank">{{ scope.row.title }}</a></template>
+                  </el-table-column>
+                  <el-table-column label="发布时间" width="120">
+                    <template slot-scope="scope">{{ scope.row.publishTime }}</template>
+                  </el-table-column>
+                  <el-table-column label="数据源" width="120">
+                    <template slot-scope="scope">{{ scope.row.dataSource }}</template>
+                  </el-table-column>
+                </el-table>
+              </div>
+            </el-col>
+
+            <el-col :span="12">
+              <div class="grid-content bg-purple">
+                <el-table ref="multipleTable2" :data="allTypeSelected" tooltip-effect="dark" height="348px" style="width: 100%"
+                  @selection-change="handleSelectionChange">
+                  <el-table-column prop="title" label="标题" show-overflow-tooltip>
+                    <template slot-scope="scope"><a :href="scope.row.url" target="_blank">{{ scope.row.title }}</a></template>
+                  </el-table-column>
+                  <el-table-column label="发布时间" width="120">
+                    <template slot-scope="scope">{{ scope.row.publishTime }}</template>
+                  </el-table-column>
+                  <el-table-column label="数据源" width="120">
+                    <template slot-scope="scope">{{ scope.row.dataSource }}</template>
+                  </el-table-column>
+                </el-table>
+                <div class="ctr-container">
+                  <el-button type="primary" :disabled="allTypeSelected.length === 0? true: false" @click="showDialog"
+                    plain size="small">发送已选文章</el-button>
+                  <!-- <el-button type="primary" plain size="small" :disabled="allTypeSelected.length === 0? true: false"
+                    @click="addArticle">把选中的文章存库</el-button> -->
+                  <!-- <el-button type="primary" plain size="small">过滤已发文章</el-button> -->
+                </div>
+              </div>
+            </el-col>
+
+          </el-row>
+        </div>
+      </el-card>
+    </el-main>
+    <el-dialog title="文章推送" :visible.sync="dialogFormVisible">
+      <el-form :model="form">
+        <el-form-item label="群组" :label-width="formLabelWidth">
+          <el-select v-model="form.token" placeholder="请选择发送的群">
+            <el-option label="测试" value="e34fce0278aaff26762fea09d05f910c0a2f08b16f3d629a46bf0d3294e9b77e"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="内容" :label-width="formLabelWidth">
+          <el-input type="textarea" :rows="4" v-model="form.content" autocomplete="off"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="dingding">确 定</el-button>
+      </div>
+    </el-dialog>
+  </el-container>
+</div>
+{% endraw %}
+<script src="/wangcai/index.js"></script>
+{% endblock %}
